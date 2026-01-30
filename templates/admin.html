@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+
+    <h2>Restaurant Control</h2>
+
+<form action="/set_status" method="POST">
+    <button name="status" value="open">Set OPEN</button>
+    <button name="status" value="closed">Set CLOSED</button>
+</form>
+
+    <h2>Customer Reviews</h2>
+
+    {% for review in reviews %}
+        <div style="border:1px solid black; margin:10px; padding:10px;">
+            <p><strong>Rating:</strong> {{ review.rating }}</p>
+            <p><strong>Feedback:</strong> {{ review.feedback }}</p>
+        </div>
+    {% endfor %}
+    
+
+    <h2>Table Bookings</h2>
+
+{% for booking in bookings %}
+    <div style="border:1px solid blue; margin:10px; padding:10px;">
+        <p><strong>Details:</strong> {{ booking.details }}</p>
+        <p><strong>Status:</strong> {{ booking.status }}</p>
+
+        <form action="/update_booking" method="POST">
+            <input type="hidden" name="id" value="{{ booking.id }}">
+            <button name="action" value="accept">Accept</button>
+            <button name="action" value="reject">Reject</button>
+        </form>
+    </div>
+{% endfor %}
+
+
+<h2>Vouchers</h2>
+
+{% for voucher in vouchers %}
+    <div style="border:1px solid green; margin:10px; padding:10px;">
+        <p><strong>Code:</strong> {{ voucher.code }}</p>
+        <p><strong>Phone:</strong> {{ voucher.phone }}</p>
+        <p><strong>Discount:</strong> {{ voucher.discount }}</p>
+        <p><strong>Used:</strong> {{ voucher.used }}</p>
+
+        <form action="/mark_used" method="POST">
+            <input type="hidden" name="id" value="{{ voucher.id }}">
+            <button>Mark as Used</button>
+        </form>
+    </div>
+{% endfor %}
+
+
+</body>
+</html>

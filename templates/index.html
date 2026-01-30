@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restaurant Feedback</title>
+</head>
+<body>
+    <h2>Rate Your Experience</h2>
+
+    <form method="POST" action="/submit">
+        <label>Rating (1–5):</label><br>
+        <input type="number" name="rating" min="1" max="5" required><br><br>
+
+        <label>Feedback:</label><br>
+        <textarea name="feedback"></textarea><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
